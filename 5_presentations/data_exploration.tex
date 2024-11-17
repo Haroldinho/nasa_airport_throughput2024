@@ -1,5 +1,6 @@
 \documentclass[11pt,xcolor={dvipsnames},hyperref={pdftex,pdfpagemode=UseNone,hidelinks,pdfdisplaydoctitle=true},usepdftitle=false]{beamer}
 \usepackage{presentation}
+\usepackage[T1]{fontenc}
 
 % Enter presentation title to populate PDF metadata:
 \hypersetup{pdftitle={The NASA Airport Throughput Prediction Challenge: Data Exploration}}
@@ -24,15 +25,73 @@ information
 
 \frame{\titlepage}
 
-% Enter content of presentation:
+% Agenda
 \begin{frame}
-\frametitle{Generic slide}
+\frametitle{Exploratory Data Analysis: Data Content}
 \begin{itemize}
-\item Consectetur adipiscing elit
-\item Sed do eiusmod tempor incididunt
-\item Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-\item Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-\item Ut labore et dolore magna aliqua
+	\item FUSER
+	\begin{itemize}
+		\item Configs Data Set (\text{D-ATIS} Data)
+		\item Runways Data Set (Arrival Departure Detection)
+		\item First Position Data Set
+		\item TBFM Data Set (Time-Based Flow Management Data)
+		\item TFM Track Data Set (Traffic Flow Management Data)
+		% \end{itemize}
+		% \end{frame}
+		% \begin{frame}
+		% \frametitle{Exploratory Data Analysis: Data Content (Continued)}
+		% \begin{itemize}
+		\item ETD Data Set (Estimated Time of Departure)
+		\item LAMP Data Set (Local Aviation MOS Program Data)
+		\item MFS Data Set (FAA SWIM Feeds)
+	\end{itemize}
+	\item METAR
+	\item Terminal Aerodrome Forecast (TAF)
+	\item Convective Weather Avoidance Model (CWAM)
 \end{itemize}
 \end{frame}
+
+% FUSER
+% include location data size, content, ....
+\begin{frame}
+\frametitle{FUSER}
+\begin{itemize}
+	\item FUSER dataset consists of 8 types of CSV files, each providing various flight and airport-related data
+	\item Files are named using the format \{airport\}\_date\_range.\{file\_type\}\_\{data\_set\}.csv
+	\item Data is broken down between test and training set
+	
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{FUSER Training data}
+	\begin{itemize}
+		\item Data is broken down by airport
+		\begin{itemize}
+			\item KATL
+			\item KCLT
+			\item KDEN
+			\item KDFW
+			\item KJFK
+			\item KMEM
+			\item KORD
+			\item KPHX
+			\item KSEA
+		\end{itemize}
+		\item location: FUSER\_train\_\{airport\}/\{airport\}/\{airport\}\_\{year\}-\{month\}-\{day\}\_\{year\}-\{month\}-\{day\}.\{data\_set\}
+		\item For each day, we have one of the 8 datasets listed above (configs\_data\_set, runways\_data\_set, first\_postion\_data\_set, TBFM\_data\_set, TFM\_track\_data\_set, ETD\_data\_set, LAMP\_data\_set, MFS\_data\_set )
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{FUSER Data Sets}
+	\begin{itemize}
+		\item configs\_data\_set: Contains airport configuration and weather details extracted from D-ATIS messages, used for understanding airport configurations.
+		\item runways\_data\_set
+	\end{itemize}
+\end{frame}
+
 \end{document}
+
+
