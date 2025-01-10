@@ -1,30 +1,8 @@
-# README
-
-This is the place where I will start the Exploratory Data Analysis for the project
-
-## Objective
-The objective of the explorative data analysis is to understand what data was provided and what portion of 
-the available data would be the most useful to predict throughput
-
-## Tasks
-Understand:
-- The structure of the database, the size of the data and the file naming convention
-- The mapping between the target variable (throughput) and all the dependent variables, 
-mostly through correlation, confusion matrics and independence studies
-- The important dimensions and groups to consider through dimensionality reduction, clustering and factorization
-
-Suggest other type of data that could be valuable
-
-## Visualization
-This is also the opportunity to start sharing the results of the analysis with stakeholders
-
-
-## Training and Test Split
-*This section has been copied directly from the competition website*
-
+# For the Predictions
 Train and Test Split
 
 For this challenge, the data has been split into Training and Testing via the following cyclical structure, starting from 2022/09/01:
+
 Training: 24 days
 Testing: 8 days
 And so on, for an entire year of data.
@@ -36,3 +14,17 @@ Testing/Prediction Data: Testing data is the input data that should be used to m
 This is structured this way to ensure that no "future" information is available at time T regarding the next 3 hours, so that the data should be trained with whatever information is available at time T (including system estimates of arrivals into the future and weather forecasts made at or before time T).
 
 The goal of the competition is to create real-time prediction models that can make inference without the use of any information that is not yet available, so this is very important to keep in mind when selecting the input data.
+
+The arrival buckets to be predicted are described in the submission_format.csv file and look like this:
+
+     ID,Value
+     KDEN_220925_0100_15,99
+     KDEN_220925_0100_30,99
+     KDEN_220925_0100_45,99
+     KDEN_220925_0100_60,99
+     KDEN_220925_0100_75,99
+     ...
+Where KDEN is the ICAO code for the airport, 220925 is the date (YYMMDD), 0100 is the time of the prediction (HHMM) and 15, 30,.. are the buckets into the future (from 1:00 to 1:15, from 1:15 to 1:30, etc.).
+The order of the predictions should be the same as in the submission_format.csv file. Failing to follow this format will result in an error or lower score.
+
+The evaluation metric is based on Root Mean Squared Error (RMSE). Specifically, it is calculated as exp(-RMSE/K), where K is a normalization factor of 10, and exp is the exponential function in order for it to be a number between 0.0 and 1.0, with 1.0 representing a perfect score (RMSE = 0).
